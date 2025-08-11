@@ -267,8 +267,11 @@ def main():
         print("\n❌ Failed to fetch paper details!")
         return
     
-    # Save to JSON file
-    output_file = "cancer_papers_sample.json"
+    # Save to JSON file in data directory
+    # Create data directory if it doesn't exist
+    os.makedirs("data", exist_ok=True)
+    
+    output_file = "data/cancer_papers_sample.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(papers, f, indent=2, ensure_ascii=False)
     

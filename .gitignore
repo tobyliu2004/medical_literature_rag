@@ -1,64 +1,16 @@
-# Environment
-.env
-.envrc
-.python-version
+# === CRITICAL - NEVER COMMIT ===
+.env                # Your API keys and secrets
 
-# Data
-data/
-*.json
-*.csv
-*.db
-*.sqlite
+# === DATA ===
+data/               # Data directory
+*.json             # JSON data files
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-.pytest_cache/
-.coverage
-htmlcov/
+# === PYTHON ===
+__pycache__/       # Python cache
+*.pyc              # Compiled Python files
 
-# Jupyter
-.ipynb_checkpoints
-*.ipynb
+# === MACOS ===
+.DS_Store          # Mac folder settings
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Logs
-*.log
-logs/
-
-# Model files (large)
-*.pkl
-*.pth
-*.h5
-*.onnx
-models/
+# === VS CODE ===
+.vscode/           # Editor settings (personal to each developer)

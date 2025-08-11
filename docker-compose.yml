@@ -1,0 +1,42 @@
+# Docker Compose configuration for Medical Literature RAG
+# This sets up PostgreSQL with pgvector extension for vector similarity search (builds the database house)
+
+version: '3.8'
+
+services:
+  postgres:
+    # Using pgvector-enabled PostgreSQL image
+    image: pgvector/pgvector:pg16
+    
+    container_name: medical_rag_postgres
+    
+    # Environment variables for database setup
+    environment:
+      POSTGRES_USER: rag_user
+      POSTGRES_PASSWORD: rag_password
+      POSTGRES_DB: medical_rag
+    
+    # Port mapping: local:container
+    # Access database at localhost:5440 (using 5440 to avoid conflicts)
+    ports:
+      - "5440:5432"
+    
+    # Persistent storage for database data
+    # Data survives container restarts
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+    # Health check to ensure database is ready
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag_user -d medical_rag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+    # Restart policy
+    restart: unless-stopped
+
+# Named volumes (Docker manages the location)
+volumes:
+  postgres_data:
+    driver: local
