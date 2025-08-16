@@ -218,16 +218,18 @@ class DatabaseManager:
         query = """
             SELECT 
                 pmid, title, abstract, journal, pub_date,
-                1 - (embedding <=> %s) as similarity
+                1 - (embedding <=> %s::vector) as similarity
             FROM papers
             WHERE embedding IS NOT NULL
-            ORDER BY embedding <=> %s
+            ORDER BY embedding <=> %s::vector
             LIMIT %s;
         """
         
         with self.get_cursor() as cursor:
+            # Convert to list and format as PostgreSQL array string
             embedding_list = query_embedding.tolist()
-            cursor.execute(query, (embedding_list, embedding_list, limit))
+            embedding_str = f"[{','.join(map(str, embedding_list))}]"
+            cursor.execute(query, (embedding_str, embedding_str, limit))
             return cursor.fetchall()
     
     def get_stats(self) -> Dict:

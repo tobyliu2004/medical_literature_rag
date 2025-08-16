@@ -23,9 +23,8 @@ CREATE TABLE IF NOT EXISTS papers (
     doi VARCHAR(200),
     
     -- Vector embedding for semantic search
-    -- 384 dimensions for all-MiniLM-L6-v2 model
-    -- We'll use 768 for better models later
-    embedding vector(384),
+    -- 768 dimensions for all-mpnet-base-v2 model (better accuracy for medical domain)
+    embedding vector(768),
     
     -- Full-text search vector for keyword search
     search_vector tsvector,
@@ -70,7 +69,7 @@ EXECUTE FUNCTION update_search_vector();
 CREATE TABLE IF NOT EXISTS query_history (
     id SERIAL PRIMARY KEY,
     query_text TEXT NOT NULL,
-    query_embedding vector(384),
+    query_embedding vector(768),
     result_count INTEGER,
     response_time_ms INTEGER,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP

@@ -1,7 +1,7 @@
 {
-  "python.defaultInterpreterPath": "~/miniforge3/envs/ml-env/bin/python",
+  "python.defaultInterpreterPath": "/opt/anaconda3/envs/rag_env/bin/python",
   "python.terminal.activateEnvironment": true,
   "terminal.integrated.env.osx": {
-    "CONDA_DEFAULT_ENV": "ml-env"
+    "CONDA_DEFAULT_ENV": "rag_env"
   }
 }
