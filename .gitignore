@@ -3,7 +3,11 @@
 
 # === DATA ===
 data/               # Data directory
+evaluations/
 *.json             # JSON data files
+
+# === MODELS ===
+models/            # Large model files (too big for GitHub)
 
 # === PYTHON ===
 __pycache__/       # Python cache
@@ -14,3 +18,4 @@ __pycache__/       # Python cache
 
 # === VS CODE ===
 .vscode/           # Editor settings (personal to each developer)
+models/*.gguf

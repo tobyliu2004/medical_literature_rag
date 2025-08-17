@@ -1,7 +1,7 @@
 """
 Embeddings pipeline for Medical Literature RAG.
 Handles text embedding generation using sentence-transformers.
-Embeds each medical paper and stores in a vevctor in the database, give scores to each request and compare to each paper score
+Embeds each medical paper and stores in a vevctor in the database for each paper
 """
 
 import time
@@ -9,7 +9,7 @@ import logging
 from typing import List, Dict, Optional, Tuple
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from database import DatabaseManager
+from src.database_pool import DatabaseManager  # Using pooled version
 
 # Configure logging
 logging.basicConfig(
